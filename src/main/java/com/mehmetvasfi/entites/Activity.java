@@ -1,7 +1,6 @@
 package com.mehmetvasfi.entites;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
