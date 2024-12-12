@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:word_events/screens/add_screen/add_widgets.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -8,10 +9,9 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("ADD PAGE",style: TextStyle(fontSize: 25),),
-    );
+    return addUI(context);
   }
 }

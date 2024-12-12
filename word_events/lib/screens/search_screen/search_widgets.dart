@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:word_events/controllers/activity_controller.dart';
+import 'package:word_events/models/activity.dart';
+import 'package:word_events/models/user.dart';
 import 'package:word_events/widgets/button.dart';
 import 'package:word_events/widgets/search_field.dart';
+import 'package:get/get.dart';
+
 
 TextEditingController tfCategoryController = TextEditingController();
 TextEditingController tfLocationController = TextEditingController();
 TextEditingController tfDateController = TextEditingController();
 TextEditingController tfTeamSizeController = TextEditingController();
+
+final ActivityController activityController = Get.put(ActivityController());
 
 Widget searchUI(BuildContext context) {
   return Center(
@@ -25,6 +32,17 @@ Widget searchUI(BuildContext context) {
             label: "Search",
             function: (){
               // filtering list function
+
+              // test for activity card
+              User user = User(name: "Emir");
+
+              Activity activity = Activity(
+                title: "Halısaha Maçı",
+                category: "Futbol"
+              );
+              activityController.addActivity(activity);
+              //
+
               Navigator.pushNamed(context, '/activities');
             }
         ),
