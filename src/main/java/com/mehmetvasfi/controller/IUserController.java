@@ -12,7 +12,7 @@ public interface IUserController {
 
 	public User getUserById(Integer id);
 
-	public void deleteUser(Integer id);
+	public boolean deleteUser(Integer id);
 
 	public User updateUser(Integer id, User updateUser);
 	

@@ -39,14 +39,15 @@ public class UserServicesImpl implements IUserServices{
 	}
 
 	@Override
-	public void  deleteUser(Integer id){
+	public boolean  deleteUser(Integer id){
 
 		User dbUser=getUserById(id);
 		if(dbUser!=null)
 		{
 			userRepository.delete(dbUser);
+			return true;
 		}
-
+		return false;
 	}
 
 	@Override

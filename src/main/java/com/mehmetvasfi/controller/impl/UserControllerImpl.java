@@ -16,6 +16,8 @@ import com.mehmetvasfi.controller.IUserController;
 import com.mehmetvasfi.entites.User;
 import com.mehmetvasfi.service.IUserServices;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/rest/api/user")
 public class UserControllerImpl implements IUserController {
@@ -32,7 +34,7 @@ public class UserControllerImpl implements IUserController {
 
 	@PostMapping(path = "/save")
 	@Override
-	public User saveUser(@RequestBody User user){
+	public User saveUser(@RequestBody @Valid User user){
 		return userServices.saveUser(user);
 	}
 
@@ -45,9 +47,9 @@ public class UserControllerImpl implements IUserController {
 
 	@DeleteMapping(path = "/delete/{id}")
 	@Override
-	public void deleteUser(@PathVariable(name = "id") Integer id){
+	public boolean deleteUser(@PathVariable(name = "id") Integer id){
 
-		userServices.deleteUser(id);
+		return userServices.deleteUser(id);
 	}
 
 	@PutMapping(path="/update/{id}")

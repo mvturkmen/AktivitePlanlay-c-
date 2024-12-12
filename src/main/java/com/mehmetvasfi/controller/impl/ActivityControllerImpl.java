@@ -15,6 +15,8 @@ import com.mehmetvasfi.controller.IActivityController;
 import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.service.IActivityService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/rest/api/activity")
 public class ActivityControllerImpl implements IActivityController {
@@ -28,7 +30,7 @@ public class ActivityControllerImpl implements IActivityController {
 	}
 	@Override
 	@PostMapping(path = "/save")
-	public Activity saveActivity(@RequestBody Activity activity) {
+	public Activity saveActivity(@RequestBody @Valid Activity activity) {
 		activityService.saveActivity(activity);
 		return activity;
 	}
