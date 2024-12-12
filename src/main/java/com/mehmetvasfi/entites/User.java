@@ -2,6 +2,8 @@ package com.mehmetvasfi.entites;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "birt_of_date")
 	private Date birthOfDate;
 	
