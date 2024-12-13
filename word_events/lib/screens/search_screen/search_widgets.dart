@@ -33,15 +33,13 @@ Widget searchUI(BuildContext context) {
             function: (){
               // filtering list function
 
-              // test for activity card
-              User user = User(name: "Emir");
-
+              /*
               Activity activity = Activity(
                 title: "Halısaha Maçı",
                 category: "Futbol"
               );
               activityController.addActivity(activity);
-              //
+              */
 
               Navigator.pushNamed(context, '/activities');
             }

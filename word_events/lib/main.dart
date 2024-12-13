@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    /*ActivityService activityService = ActivityService();
-    activityService.getAllActivities();*/
+    ActivityService activityService = ActivityService();
+    activityService.getAllActivities();
 
     return GetMaterialApp(
       title: 'Flutter Demo',
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/add': (context) => const SearchPage(),
         '/profile': (context) => const ProfilePage(),
         '/activities': (context) => const ActivitiesPage(),
-        '/activityDetail': (context) => const ActivityDetailPage()
+        '/activityDetail': (context) => const ActivityDetailPage(),
       },
     );
   }

@@ -1,7 +1,49 @@
-
 import 'package:word_events/models/activity.dart';
 
 class User {
+  int? id;
+  String? firstName;
+  String? lastName;
+  String? birthOfDate;
+  String? mailProperties;
+  String? passwordString;
+  String? bio;
+
+  User(
+      {this.id,
+        this.firstName,
+        this.lastName,
+        this.birthOfDate,
+        this.mailProperties,
+        this.passwordString,
+        this.bio});
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    birthOfDate = json['birthOfDate'];
+    mailProperties = json['mailProperties'];
+    passwordString = json['passwordString'];
+    bio = json['bio'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['firstName'] = firstName;
+    data['lastName'] = lastName;
+    data['birthOfDate'] = birthOfDate;
+    data['mailProperties'] = mailProperties;
+    data['passwordString'] = passwordString;
+    data['bio'] = bio;
+    return data;
+  }
+}
+
+
+/*
+   class User {
   String? name;
   String? surname;
   int? age;
@@ -30,3 +72,5 @@ enum Hobies{
   football,
   trekking,
 }
+*/
+

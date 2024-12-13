@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_theme.dart';
 import 'package:word_events/widgets/button.dart';
+import 'package:word_events/widgets/info_bar.dart';
 import 'package:word_events/widgets/input_field.dart';
 
 TextEditingController tfNameController = TextEditingController();
@@ -35,7 +36,7 @@ Widget signUp(BuildContext context) {
                   label: "Sign Up",
                   function: (){
                     _showMyDialog(context);
-                    //Navigator.pushNamed(context, '/logIn');
+                    Navigator.pushNamed(context, '/logIn');
                   }
               ), // navigate signup
             ],

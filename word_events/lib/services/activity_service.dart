@@ -6,7 +6,7 @@ import 'package:word_events/models/activity.dart';
 import 'package:http/http.dart' as http;
 
 //
-final ActivityController activityController = Get.find<ActivityController>();
+//final ActivityController activityController = Get.find<ActivityController>();
 
 
 class ActivityService {
@@ -15,6 +15,7 @@ class ActivityService {
   // Read (GET)
   Future<List<Activity>> getActivities() async {
     final response = await http.get(Uri.parse(activitiesUrl));
+    print(response.body);
 
     List<Activity> activities = [];
 
@@ -40,6 +41,7 @@ class ActivityService {
       final response = await http.get(Uri.parse(activitiesUrl));
 
       if(response.statusCode == 200) {
+        print(response.body);
         List<dynamic> responseList = json.decode(response.body);
 
         var activities = responseList.map((jsonItem) => Activity.fromJson(jsonItem)).toList();

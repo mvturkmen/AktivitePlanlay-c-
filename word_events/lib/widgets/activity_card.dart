@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
+import 'package:word_events/screens/activityDetail_screen/activityDetail_page.dart';
 
 class ActivityCard extends StatelessWidget {
   final Activity activity;
@@ -11,7 +12,11 @@ class ActivityCard extends StatelessWidget {
     return GestureDetector(
       onDoubleTap: () {
         // Navigator ile detay sayfasına yönlendirme
-        Navigator.pushNamed(context, '/activityDetail');
+        //Navigator.pushNamed(context, '/activityDetail');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ActivityDetailPage(activity: activity,)),
+        );
       },
       child: Card(
         margin: const EdgeInsets.all(10),
@@ -53,17 +58,17 @@ class ActivityCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
+                    Text(
                       'Düzenleyen: '
-                          ' Emir ',
+                          ' ${activity.description} ',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
                       'Kategori: ${activity.category}',
                       style: const TextStyle(color: Colors.white),
                     ),
-                    const Text(
-                      'Tarih: 27 Ocak',
+                    Text(
+                      'Tarih: ${activity.timeOfActivity}',
                       style: const TextStyle(color: Colors.white),
                     ),
                   ],
