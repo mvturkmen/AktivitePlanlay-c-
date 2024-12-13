@@ -1,13 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_theme.dart';
+import 'package:word_events/models/user.dart';
+import 'package:word_events/services/user_service.dart';
 import 'package:word_events/widgets/button.dart';
-import 'package:word_events/widgets/info_bar.dart';
 import 'package:word_events/widgets/input_field.dart';
 
-TextEditingController tfNameController = TextEditingController();
+TextEditingController tfFirstNameController = TextEditingController();
+TextEditingController tfLastNameController = TextEditingController();
+TextEditingController tfDateOfBirth = TextEditingController();
+TextEditingController tfBioController = TextEditingController();
 TextEditingController tfEmailController = TextEditingController();
 TextEditingController tfPasswordController = TextEditingController();
-TextEditingController tfPasswordAgainController = TextEditingController();
+
+UserService userService = UserService();
 
 TextEditingController tfCodeController = TextEditingController();
 late bool code_verification;
@@ -20,14 +27,19 @@ Widget signUp(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          // Name
-          InputField(tfController: tfNameController, tfIcon: const Icon(Icons.person), tfLabel: "Name", tfFunction: (){}),
+          // FirstName
+          InputField(tfController: tfFirstNameController, tfIcon: const Icon(Icons.person), tfLabel: "Name", tfFunction: (){}),
+          // LastName
+          InputField(tfController: tfLastNameController, tfIcon: const Icon(Icons.person), tfLabel: "SurName", tfFunction: (){}),
+          // Date of Birth
+          InputField(tfController: tfDateOfBirth, tfIcon: const Icon(Icons.person), tfLabel: "BirthDay", tfFunction: (){}),
+          // Biography
+          InputField(tfController: tfBioController, tfIcon: const Icon(Icons.remove_red_eye_sharp), tfLabel: "Biography", tfFunction: (){}),
           // E Mail
           InputField(tfController: tfEmailController, tfIcon: const Icon(Icons.mail), tfLabel: "Email", tfFunction: (){}),
           // Password
           InputField(tfController: tfPasswordController, tfIcon: const Icon(Icons.remove_red_eye_sharp), tfLabel: "Password", tfFunction: (){}),
-          // Password Again
-          InputField(tfController: tfPasswordAgainController, tfIcon: const Icon(Icons.remove_red_eye_sharp), tfLabel: "Password again", tfFunction: (){}),
+
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +48,7 @@ Widget signUp(BuildContext context) {
                   label: "Sign Up",
                   function: (){
                     _showMyDialog(context);
-                    Navigator.pushNamed(context, '/logIn');
+                    //sendData(context);
                   }
               ), // navigate signup
             ],
@@ -58,7 +70,7 @@ void _showMyDialog(BuildContext context) async {
           child: ListBody(
             children: <Widget>[
               Text("We sent a code to your ${tfEmailController.text} account"),
-              InputField(tfController: tfCodeController, tfIcon: const Icon(Icons.security), tfLabel: "Code", tfFunction: (){}),
+              //InputField(tfController: tfCodeController, tfIcon: const Icon(Icons.security), tfLabel: "Code", tfFunction: (){}),
             ],
           ),
         ),
@@ -106,3 +118,28 @@ void _codeVerification(BuildContext context) async {
   );
 }
 
+
+void sendData(BuildContext context) async{
+  User user = User(
+    firstName: tfFirstNameController.text,
+    lastName: tfLastNameController.text,
+    birthOfDate: DateTime.parse(tfDateOfBirth.text),
+    bio: tfBioController.text,
+    mailProperties: tfEmailController.text,
+    passwordString: tfPasswordController.text,
+  );
+
+  final resp = await userService.postUser(user);
+
+  if(resp.statusCode == HttpStatus.ok){
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("New User Added !"))
+    );
+    Navigator.pop(context);
+  }
+  else{
+    ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Failed to signUp ."))
+    );
+  }
+}

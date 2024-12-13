@@ -6,7 +6,7 @@ class Activity {
   String? title;
   String? description;
   String? category;
-  String? timeOfActivity;
+  DateTime? timeOfActivity;
   int? teamSize;
 
   Activity(
@@ -22,7 +22,11 @@ class Activity {
     title = json['title'];
     description = json['description'];
     category = json['category'];
-    timeOfActivity = json['timeOfActivity'];
+    // Tarihi string olarak alıp DateTime'a çeviriyoruz
+    timeOfActivity = json['timeOfActivity'] != null
+        ? DateTime.parse(json['timeOfActivity'])
+        : null;
+    //timeOfActivity = json['timeOfActivity'];
     teamSize = json['teamSize'];
   }
 
@@ -32,7 +36,8 @@ class Activity {
     data['title'] = title;
     data['description'] = description;
     data['category'] = category;
-    data['timeOfActivity'] = timeOfActivity;
+    //data['timeOfActivity'] = timeOfActivity;
+    data['timeOfActivity'] = timeOfActivity?.toIso8601String();
     data['teamSize'] = teamSize;
     return data;
   }

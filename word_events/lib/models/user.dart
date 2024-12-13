@@ -4,7 +4,7 @@ class User {
   int? id;
   String? firstName;
   String? lastName;
-  String? birthOfDate;
+  DateTime? birthOfDate;
   String? mailProperties;
   String? passwordString;
   String? bio;
@@ -22,7 +22,10 @@ class User {
     id = json['id'];
     firstName = json['firstName'];
     lastName = json['lastName'];
-    birthOfDate = json['birthOfDate'];
+    birthOfDate = json['birthOfDate'] != null
+      ? DateTime.parse(json['birthOfDate'])
+      : null;
+    //birthOfDate = json['birthOfDate'];
     mailProperties = json['mailProperties'];
     passwordString = json['passwordString'];
     bio = json['bio'];
@@ -33,7 +36,7 @@ class User {
     data['id'] = id;
     data['firstName'] = firstName;
     data['lastName'] = lastName;
-    data['birthOfDate'] = birthOfDate;
+    data['birthOfDate'] = birthOfDate?.toIso8601String();
     data['mailProperties'] = mailProperties;
     data['passwordString'] = passwordString;
     data['bio'] = bio;

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ActivityService activityService = ActivityService();
-    activityService.getAllActivities();
+    activityService.getActivities();
 
     return GetMaterialApp(
       title: 'Flutter Demo',

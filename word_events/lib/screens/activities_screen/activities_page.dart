@@ -21,7 +21,7 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: _activityService.getAllActivities(),
+          future: _activityService.getActivities(),
           builder: (context, snapshot) {
             if(snapshot.connectionState == ConnectionState.waiting){
               return const CircularProgressIndicator();

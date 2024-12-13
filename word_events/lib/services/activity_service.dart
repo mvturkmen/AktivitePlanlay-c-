@@ -10,35 +10,25 @@ import 'package:http/http.dart' as http;
 
 
 class ActivityService {
-  // Create (SET)
+  // Create (POST)
+  Future<http.Response> postActivity(Activity activity) async {
+    final response = await http.post(
+      Uri.parse(activitiePostUrl),
+      headers: <String, String>{
+        'Content-Type' : 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        activity.toJson(),
+      ),
+    );
+    print(response.body);
+    return response;
+  }
 
   // Read (GET)
   Future<List<Activity>> getActivities() async {
-    final response = await http.get(Uri.parse(activitiesUrl));
-    print(response.body);
-
-    List<Activity> activities = [];
-
-    List<dynamic> responseList = jsonDecode(response.body);
-
-    for (var i = 0; i<responseList.length; i++){
-      activities.add(Activity.fromJson(responseList[i]));
-    }
-
-    return activities;
-
-    //print(response.statusCode);
-    //print(response.body);
-    /*
-    List<Activity> list = List.empty();
-    return list;
-     */
-  }
-
-    // shop app api function
-  Future<List<Activity>> getAllActivities() async {
     try {
-      final response = await http.get(Uri.parse(activitiesUrl));
+      final response = await http.get(Uri.parse(activitiesGetUrl));
 
       if(response.statusCode == 200) {
         print(response.body);

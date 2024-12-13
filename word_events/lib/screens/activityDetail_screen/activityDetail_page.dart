@@ -53,7 +53,7 @@ class ActivityDetailPage extends StatelessWidget {
                   buildDetailRow('Title:', activity?.title ?? 'No Title'),
                   buildDetailRow('Description:', activity?.description ?? 'No Description'),
                   buildDetailRow('Category:', activity?.category ?? 'No Category'),
-                  buildDetailRow('Time:', activity?.timeOfActivity ?? 'No Time Provided'),
+                  buildDetailRow('Time:', activity?.timeOfActivity.toString()  ?? 'No Time Provided'),
                   buildDetailRow('Team Size:', activity?.teamSize?.toString() ?? 'No Team Size'),
                   buildDetailRow('Location:', 'Default Location'),
                   buildDetailRow('Participants:', 'Default Participants'),
