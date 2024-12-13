@@ -16,4 +16,6 @@ public interface IUserController {
 
 	public User updateUser(Integer id, User updateUser);
 	
+	public String verifyUserEmail(String token);
+	
 }

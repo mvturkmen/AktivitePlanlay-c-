@@ -62,6 +62,12 @@ public class User {
     @Size(max = 250, message = "Bio cannot exceed 250 characters")
     @Column(name = "bio")
     private String bio;
+    
+    @Column(name = "email_verified")
+    private boolean emailVerified = false;
+    
+    @Column(name = "verification_token")
+    private String verificationToken;
 
 	
 }

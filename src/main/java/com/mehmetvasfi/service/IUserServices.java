@@ -15,4 +15,6 @@ public interface IUserServices {
     public boolean deleteUser(Integer id);
 
     public User updateUser(Integer id, User dtoUserIU);
+    
+    boolean verifyUserEmail(String token);
 }
