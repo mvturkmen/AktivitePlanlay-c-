@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:word_events/services/activity_service.dart';
@@ -14,7 +13,7 @@ TextEditingController tfTeamSizeController = TextEditingController();
 
 ActivityService activityService = ActivityService();
 
-Widget addUI(BuildContext context) {
+Widget updateUI(BuildContext context, Activity activity) {
   return SingleChildScrollView(
     child: Center(
       child: Column(
@@ -30,13 +29,12 @@ Widget addUI(BuildContext context) {
           InputField(tfController: tfDateController, tfIcon: const Icon(Icons.calendar_month), tfLabel: "Date", tfFunction: (){}),
           // teamSize
           InputField(tfController: tfTeamSizeController, tfIcon: const Icon(Icons.group_rounded), tfLabel: "Team Size", tfFunction: (){}),
-    
+
           AppButton(
-          label: "ADD",
-          function: (){
-    
-            createActivity(context);
-          }
+              label: "EDIT",
+              function: (){
+                editActivity(context, activity, activity.id!);
+              }
           )
         ],
       ),
@@ -44,8 +42,18 @@ Widget addUI(BuildContext context) {
   );
 }
 
-Future<void> createActivity(BuildContext context) async{
-  Activity activity = Activity(
+
+// edit activity function
+Future<void> editActivity(BuildContext context, Activity activity, int id) async{
+  /*
+  activity.title = tfTitleController.text;
+  activity.description = tfDescriptionController.text;
+  activity.category = tfCategoryController.text;
+  activity.timeOfActivity = DateTime.parse(tfDateController.text);
+  activity.teamSize = int.parse(tfTeamSizeController.text);
+   */
+
+  Activity editingActivity = Activity(
     title: tfTitleController.text,
     description: tfDescriptionController.text,
     category: tfCategoryController.text,
@@ -53,11 +61,13 @@ Future<void> createActivity(BuildContext context) async{
     teamSize: int.parse(tfTeamSizeController.text),
   );
 
+  activity = editingActivity;
+
   final resp = await activityService.postActivity(activity);
 
   if(resp.statusCode == HttpStatus.ok){
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("New Activity Added !"))
+        const SnackBar(content: Text("Activity Updated Succesfully !"))
     );
     tfTitleController.clear();
     tfDescriptionController.clear();
@@ -67,7 +77,7 @@ Future<void> createActivity(BuildContext context) async{
   }
   else{
     ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Failed to create ."))
+        const SnackBar(content: Text("Failed to update ."))
     );
   }
 }

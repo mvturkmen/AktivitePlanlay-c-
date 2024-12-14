@@ -12,17 +12,22 @@ import 'package:http/http.dart' as http;
 class ActivityService {
   // Create (POST)
   Future<http.Response> postActivity(Activity activity) async {
-    final response = await http.post(
-      Uri.parse(activitiePostUrl),
-      headers: <String, String>{
-        'Content-Type' : 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(
-        activity.toJson(),
-      ),
-    );
-    print(response.body);
-    return response;
+    try {
+      final response = await http.post(
+        Uri.parse(activitiePostUrl),
+        headers: <String, String>{
+          'Content-Type' : 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          activity.toJson(),
+        ),
+      );
+      print(response.body);
+      return response;
+    } catch (error){
+      throw Exception("Failed when create a json data ! Error: $error");
+    }
+
   }
 
   // Read (GET)
@@ -38,25 +43,40 @@ class ActivityService {
         return activities;
       }
       else {
-        throw Exception("Failed to load activities");
+        throw Exception("Failed to connect");
       }
     } catch (error) {
       print('Error: $error');
-      throw Exception('Failed to load activities');
+      throw Exception('Failed to load activities ! Error: $error');
     }
 
-
-
-    //print(response.statusCode);
-    //print(response.body);
-    /*
-    List<Activity> list = List.empty();
-    return list;
-     */
   }
 
 
-  // Update
+  // Update (PUT)
+  Future<void> updateActivity(Activity activity, int id) async{
+    try{
+      final response = await http.put(Uri.parse("$activitiePutUrl$id"),
+          headers: <String, String>{
+            'Content-Type' : 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(
+              activity.toJson()
+          )
+      );
+    } catch(error) {
+      throw Exception("Failed when to update ! Error: $error");
+    }
+
+  }
 
   // Delete
+  Future<http.Response> deleteActivity(int id) async{
+    try {
+      final response = http.delete(Uri.parse("$activitieDeleteUrl$id"));
+      return response;
+    } catch(error) {
+      throw Exception("Failed when delete json data ! Error: $error");
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/controllers/activity_controller.dart';
 import 'package:get/get.dart';
+import 'package:word_events/globals/app_theme.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:word_events/services/activity_service.dart';
 import 'package:word_events/widgets/activity_card.dart';
@@ -16,6 +17,7 @@ class ActivitiesPage extends StatefulWidget {
 class _ActivitiesPageState extends State<ActivitiesPage> {
 
   final ActivityService _activityService = ActivityService();
+  final AppColors appColors = AppColors();
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,21 @@ class _ActivitiesPageState extends State<ActivitiesPage> {
           future: _activityService.getActivities(),
           builder: (context, snapshot) {
             if(snapshot.connectionState == ConnectionState.waiting){
-              return const CircularProgressIndicator();
+              return Center(
+                child: CircularProgressIndicator(
+                  color: appColors.secondaryColor,
+                ),
+              );
             }
             else if(snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
             }
             else if(!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Text('No activities found');
+              return const Center(
+                child: Text('There is not any activity'),
+              );
             }
             else {
               return ListView.builder(

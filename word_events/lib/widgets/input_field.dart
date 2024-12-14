@@ -32,20 +32,22 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(appSize.minPadding,appSize.midPadding,appSize.minPadding,appSize.midPadding/2),
-      child: TextField(
-        controller: widget.tfController,
-        style: TextStyle(color: appColors.inputFieldColor),
-        onTap: widget.tfFunction,
-        decoration: InputDecoration(
-          suffixIcon: widget.tfIcon,
-          suffixIconColor: appColors.inputFieldColor,
-          labelText: widget.tfLabel,
-          labelStyle: TextStyle(color: appColors.inputFieldColor),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(appSize.radius))
-          )
+    return Material(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(appSize.minPadding,appSize.midPadding,appSize.minPadding,appSize.midPadding/2),
+        child: TextField(
+          controller: widget.tfController,
+          style: TextStyle(color: appColors.inputFieldColor),
+          onTap: widget.tfFunction,
+          decoration: InputDecoration(
+            suffixIcon: widget.tfIcon,
+            suffixIconColor: appColors.inputFieldColor,
+            labelText: widget.tfLabel,
+            labelStyle: TextStyle(color: appColors.inputFieldColor),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(appSize.radius))
+            )
+          ),
         ),
       ),
     );

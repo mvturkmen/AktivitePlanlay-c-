@@ -1,12 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
+import 'package:word_events/screens/updateActivity_screen/updateActivity_screen.dart';
+import 'package:word_events/services/activity_service.dart';
 import 'package:word_events/widgets/button.dart';
 import 'package:word_events/widgets/info_bar.dart';
 
-class ActivityDetailPage extends StatelessWidget {
+class ActivityDetailPage extends StatefulWidget {
   final Activity? activity;
 
-  const ActivityDetailPage({super.key, this.activity});
+  ActivityDetailPage({super.key, this.activity});
+
+  @override
+  State<ActivityDetailPage> createState() => _ActivityDetailPageState();
+}
+
+class _ActivityDetailPageState extends State<ActivityDetailPage> {
+  final ActivityService activityService = ActivityService();
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +61,14 @@ class ActivityDetailPage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildDetailRow('Title:', activity?.title ?? 'No Title'),
-                  buildDetailRow('Description:', activity?.description ?? 'No Description'),
-                  buildDetailRow('Category:', activity?.category ?? 'No Category'),
-                  buildDetailRow('Time:', activity?.timeOfActivity.toString()  ?? 'No Time Provided'),
-                  buildDetailRow('Team Size:', activity?.teamSize?.toString() ?? 'No Team Size'),
+                  buildDetailRow('Title:', widget.activity?.title ?? 'No Title'),
+                  buildDetailRow('Description:', widget.activity?.description ?? 'No Description'),
+                  buildDetailRow('Category:', widget.activity?.category ?? 'No Category'),
+                  buildDetailRow('Time:', widget.activity?.timeOfActivity.toString()  ?? 'No Time Provided'),
+                  buildDetailRow('Team Size:', widget.activity?.teamSize?.toString() ?? 'No Team Size'),
                   buildDetailRow('Location:', 'Default Location'),
                   buildDetailRow('Participants:', 'Default Participants'),
+                  buildDetailRow('ID:', widget.activity?.id.toString() ?? "Unknown data"),
                 ],
               ),
               AppButton(
@@ -65,6 +77,23 @@ class ActivityDetailPage extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Joined to activity !")),
                     );
+                  }
+              ),
+              AppButton(
+                  label: "Update",
+                  function: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ActivityUpdatePage(activity: widget.activity)),
+                    );
+                  }
+              ),
+              AppButton(
+                  label: "Delete",
+                  function: (){
+                    var id = widget.activity!.id!;
+                    print(id);
+                    removeActivity(context, id);
                   }
               ),
             ],
@@ -94,6 +123,23 @@ class ActivityDetailPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> removeActivity(BuildContext context,int id) async{
+    final resp = await activityService.deleteActivity(id);
+
+    if(resp.statusCode == HttpStatus.ok){
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Activity Removed !"))
+      );
+      Navigator.pop(context);
+    }
+    else{
+      print(resp.statusCode);
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Failed to delete ."))
+      );
+    }
   }
 }
 

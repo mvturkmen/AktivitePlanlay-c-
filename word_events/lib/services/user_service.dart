@@ -24,7 +24,7 @@ class UserService {
 
   // Read (GET)
 
-  // Update
+  // Update (PUT)
 
   // Delete
 }

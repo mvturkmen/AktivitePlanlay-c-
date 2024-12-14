@@ -47,8 +47,8 @@ Widget signUp(BuildContext context) {
               AppButton(
                   label: "Sign Up",
                   function: (){
+                    createUser(context);
                     _showMyDialog(context);
-                    //sendData(context);
                   }
               ), // navigate signup
             ],
@@ -119,7 +119,7 @@ void _codeVerification(BuildContext context) async {
 }
 
 
-void sendData(BuildContext context) async{
+Future<void> createUser(BuildContext context) async{
   User user = User(
     firstName: tfFirstNameController.text,
     lastName: tfLastNameController.text,
