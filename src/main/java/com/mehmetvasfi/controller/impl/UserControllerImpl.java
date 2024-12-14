@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mehmetvasfi.controller.IUserController;
+import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.entites.User;
 import com.mehmetvasfi.service.IUserServices;
+
 
 import jakarta.validation.Valid;
 
@@ -69,6 +71,35 @@ public class UserControllerImpl implements IUserController {
             return null;
         }
     }
+
+	@GetMapping(path = "onetomany/get/{id}")
+	@Override
+	public User findUserById(@PathVariable (name = "id") Integer id){
+		return userServices.findUserById(id);
+	}
+
+	@DeleteMapping(path="onetomany/delete/{userid}/{activityid}")
+	@Override
+	public boolean delUser(@PathVariable(name="userid") Integer userid,@PathVariable(name="activityid") Integer activityid){
+		return userServices.delUser(userid, activityid);
+	}
+
+    @PutMapping(path="/update/{userid}/{activityid}")
+	@Override
+	public Activity upUser(@PathVariable(name="userid") Integer userid,@PathVariable(name = "activityid") Integer activityid,@RequestBody   Activity updatedActivity){
+		return userServices.upUser(userid,activityid, updatedActivity);
+	}
+
+	@PostMapping(path="/onetomany/save/{id}")
+	@Override
+	public Activity saUser(@PathVariable(name = "id")Integer id,@RequestBody Activity activity){
+		return userServices.saUser(id, activity);
+
+		
+	}
+
+	
+
 	
 	
 	

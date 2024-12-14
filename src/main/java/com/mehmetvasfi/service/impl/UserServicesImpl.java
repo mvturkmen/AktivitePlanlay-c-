@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
+
+import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.entites.User;
+import com.mehmetvasfi.repository.ActivityRepository;
 import com.mehmetvasfi.repository.UserRepository;
 import com.mehmetvasfi.service.IUserServices;
 
@@ -18,6 +21,11 @@ public class UserServicesImpl implements IUserServices{
 	
 	@Autowired 
 	private EmailService emailService;
+
+	@Autowired
+	private ActivityServiceImpl activityService;
+
+	@Autowired ActivityRepository activityRepository;
 	
 	@Override
 	public List<User> getAllUser() {
@@ -91,5 +99,127 @@ public class UserServicesImpl implements IUserServices{
         }
         return false; 
     }
+
+	public User findUserById(Integer id)
+	{
+
+		Optional<User>optional=userRepository.findById(id);
+		if(optional.isEmpty()){
+
+			throw new RuntimeException("User not found with id: " + id);
+			
+		}
+
+		User dbUser=optional.get();
+		List<Activity>dbActivity=optional.get().getActivity();
+
+		if(dbActivity!=null && dbActivity.isEmpty()){
+			for (Activity activity : dbActivity) {
+				
+				Activity activity2=new Activity();
+				dbUser.getActivity().add(activity2);
+			}
+		}
+		return dbUser;
+	}
+
+
+	@Override
+    public boolean delUser(Integer userId, Integer activityId) {
+
+		User dbUser = findUserById(userId);
+		if (dbUser != null) {
+			
+			List<Activity> activities = dbUser.getActivity();
+			
+			
+			Activity activityToRemove = null;
+			for (Activity activity : activities) {
+				if (activity.getId().equals(activityId)) {  
+					activityToRemove = activity;
+					break;
+				}
+			}
+
+			
+			if (activityToRemove != null) {
+				activities.remove(activityToRemove);
+				activityRepository.delete(activityToRemove);
+				dbUser.setActivity(activities);  
+				userRepository.save(dbUser);
+				return true;  
+			}
+		}
+		return false;  
+    }
+
+    public Activity upUser(Integer userid, Integer activityid, Activity updatedActivity) {
+		User dbUser = findUserById(userid); // Kullanıcıyı bul
+		if (dbUser != null) {
+			List<Activity> activities = dbUser.getActivity(); // Kullanıcının aktivitelerini al
+	
+			Activity activityToUpdate = null;
+			for (Activity activity : activities) {
+				if (activity.getId().equals(activityid)) {
+					activityToUpdate = activity;
+					break;
+				}
+			}
+	
+			if (activityToUpdate != null) {
+				// Aktiviteyi güncellemeden önce ID'yi koruyalım
+				updatedActivity.setId(activityToUpdate.getId());
+	
+				// Aktiviteyi güncelle
+				Activity dbActivity = activityService.updateActivity(activityToUpdate.getId(), updatedActivity);
+				if (dbActivity != null) {
+					// Aktiviteyi tekrar güncelledikten sonra, aktiviteleri güncelle
+					activities.replaceAll(a -> a.getId().equals(activityid) ? dbActivity : a);
+	
+					// Güncellenmiş aktivitelerle kullanıcıyı kaydet
+					dbUser.setActivity(activities);
+					
+					// Kullanıcı ve aktivitelerinin doğru şekilde ilişkilendirildiğinden emin olun
+					for (Activity activity : activities) {
+						activity.setUser(dbUser); // Aktiviteyi doğru kullanıcıya bağla
+					}
+	
+					 userRepository.save(dbUser);
+
+					 return dbActivity;
+				}
+			}
+		}
+	
+		return null; // Eğer kullanıcı bulunamazsa veya aktivite güncellenemezse null döner
+	}
+	
+	
+	public Activity saUser(Integer id,Activity activity){
+
+		User dbUser=findUserById(id);
+		if(dbUser !=null){
+
+			activity.setUser(dbUser);
+
+			Activity dbActivity=activityService.saveActivity(activity);
+			//dbUser.getActivity().add(dbActivity);
+
+			return dbActivity;
+
+			// userRepository.save(dbUser);
+
+
+			//return dbUser;
+			
+
+			
+		}
+
+
+		return null;
+
+	}
+
 	
 }

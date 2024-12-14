@@ -2,11 +2,15 @@ package com.mehmetvasfi.entites;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -55,6 +59,12 @@ public class Activity {
 // medya yukleencek
 	
 // requests eklenecek
-	
+
+     @ManyToOne
+     //@JoinColumn(name = "user_id")
+     @JsonIgnore
+     private User user;
+
+
 	
 }
