@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:word_events/screens/profile_screen/profile_widgets.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -10,8 +11,10 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("PROFILE PAGE",style: TextStyle(fontSize: 25),),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      //appBar: _appBar(),
+      body: buildBody(),
     );
   }
 }

@@ -1,20 +1,42 @@
 
-  const String activitiesGetUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/activity/list"
-      ;
-  const String activitiePostUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/activity/save"
-  ;
-  const String activitiePutUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/activity/update/"
-  ;
-  const String activitieDeleteUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/activity/delete/"
+import 'package:word_events/models/user.dart';
+
+const String link =
+      "https://1d08-78-189-210-104.ngrok-free.app"
   ;
 
-  const String usersGetUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/user/list"
-  ;
-  const String userPostUrl =
-      "https://8ecf-194-27-72-60.ngrok-free.app/rest/api/user/save"
-  ;
+  // Activities links
+    // Get
+    const String activitiesGetUrl =
+        "$link/rest/api/activity/list"
+    ;
+    // Post
+    const String activitiePostUrl =
+        "$link/rest/api/activity/save"
+    ;
+    // Put
+    const String activitiePutUrl =
+        "$link/rest/api/activity/update/"
+    ;
+    // Delete
+    const String activitieDeleteUrl =
+        "$link/rest/api/activity/delete/"
+    ;
+
+  // Users links
+    // Get
+    const String usersGetUrl =
+        "$link/rest/api/user/list"
+    ;
+    // Post
+    const String userPostUrl =
+        "$link/rest/api/user/save"
+    ;
+    // Put
+    const String userPutUrl =
+        "$link/rest/api/activity/update/"
+    ;
+    // Delete
+    const String userDeleteUrl =
+        "$link/rest/api/activity/delete/"
+    ;

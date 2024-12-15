@@ -5,6 +5,7 @@ import 'package:word_events/screens/activityDetail_screen/activityDetail_page.da
 import 'package:word_events/screens/home_screen/home_page.dart';
 import 'package:word_events/screens/logIn_screen/logIn_page.dart';
 import 'package:word_events/screens/profile_screen/profile_page.dart';
+import 'package:word_events/screens/profile_screen/userPage.dart';
 import 'package:word_events/screens/search_screen/search_page.dart';
 import 'package:word_events/screens/signUp_screen/signUp_page.dart';
 import 'package:word_events/screens/updateActivity_screen/updateActivity_screen.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/add': (context) => const SearchPage(),
         '/profile': (context) => const ProfilePage(),
         '/activities': (context) => const ActivitiesPage(),
-        '/activityDetail': (context) => ActivityDetailPage(),
+        '/activityDetail': (context) => const ActivityDetailPage(),
         '/updateActivity' : (context) => const ActivityUpdatePage(),
       },
     );

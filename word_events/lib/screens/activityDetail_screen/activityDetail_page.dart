@@ -10,7 +10,7 @@ import 'package:word_events/widgets/info_bar.dart';
 class ActivityDetailPage extends StatefulWidget {
   final Activity? activity;
 
-  ActivityDetailPage({super.key, this.activity});
+  const ActivityDetailPage({super.key, this.activity});
 
   @override
   State<ActivityDetailPage> createState() => _ActivityDetailPageState();

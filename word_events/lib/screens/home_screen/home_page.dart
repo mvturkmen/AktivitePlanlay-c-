@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_theme.dart';
+import 'package:word_events/models/user.dart';
 import 'package:word_events/screens/add_screen/add_page.dart';
 import 'package:word_events/screens/profile_screen/profile_page.dart';
+import 'package:word_events/screens/profile_screen/userPage.dart';
 import 'package:word_events/screens/search_screen/search_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,10 +19,12 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
+
   final List<Widget> screensList = <Widget>[
     const SearchPage(),
     const AddPage(),
     const ProfilePage()
+    //const UserPage(),
   ];
 
 
@@ -87,6 +91,7 @@ class _HomePageState extends State<HomePage> {
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: _appColors.primaryColor,
+      backgroundColor: _appColors.secondaryColor,
       onTap: _onItemTapped,
     );
   }

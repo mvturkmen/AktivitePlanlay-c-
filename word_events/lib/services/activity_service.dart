@@ -1,13 +1,9 @@
 import 'dart:convert';
-import 'package:get/get.dart';
-import 'package:word_events/controllers/activity_controller.dart';
 import 'package:word_events/globals/api_constants.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:http/http.dart' as http;
 
-//
 //final ActivityController activityController = Get.find<ActivityController>();
-
 
 class ActivityService {
   // Create (POST)
@@ -39,7 +35,7 @@ class ActivityService {
         print(response.body);
         List<dynamic> responseList = json.decode(response.body);
 
-        var activities = responseList.map((jsonItem) => Activity.fromJson(jsonItem)).toList();
+        List<Activity> activities = responseList.map((jsonItem) => Activity.fromJson(jsonItem)).toList();
         return activities;
       }
       else {
@@ -67,7 +63,6 @@ class ActivityService {
     } catch(error) {
       throw Exception("Failed when to update ! Error: $error");
     }
-
   }
 
   // Delete
