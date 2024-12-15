@@ -1,5 +1,6 @@
 package com.mehmetvasfi.entites;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -75,7 +79,12 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 
     private List<Activity>activity;
-
+    
+     @ManyToMany
+    @JoinTable(name="user_activity",
+                joinColumns = @JoinColumn(name="user_id"),
+                inverseJoinColumns = @JoinColumn(name="activity_id"))
+    private List<Activity>attendedActivities=new ArrayList<>();
 
 
 
