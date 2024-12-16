@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
@@ -68,6 +70,19 @@ public class Activity {
      //@JoinColumn(name = "user_id")
      @JsonIgnore
      private User user;
+
+  //  @ManyToMany
+  //  @JoinTable(
+   //   name = "activity_user", 
+    //  joinColumns = @JoinColumn(name = "activity_id"), 
+      //inverseJoinColumns = @JoinColumn(name = "user_id"))
+    //private List<User> attendedUsers ;
+    //public List<User> getUsers() {
+      //  return attendedUsers;
+    //}
+
+  
+     
      
      @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
     private List<Request> requests = new ArrayList<>();

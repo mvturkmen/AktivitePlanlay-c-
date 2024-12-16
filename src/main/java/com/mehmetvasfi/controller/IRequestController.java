@@ -1,9 +1,12 @@
 package com.mehmetvasfi.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.mehmetvasfi.entites.Activity;
+import com.mehmetvasfi.dto.RequestDTO;
+
 import com.mehmetvasfi.entites.Request;
 
 public interface IRequestController {
@@ -16,6 +19,8 @@ public interface IRequestController {
     // İstek gönderme
     ResponseEntity<Request> sendRequest(@PathVariable Integer senderId, @PathVariable Integer activityId);
 
-    public Activity getRequestById(Integer id);
+    ResponseEntity<List<RequestDTO>>getRequestById(Integer id);
+
+    ResponseEntity<List<RequestDTO>>getAcceptedRequestById(Integer id);
 
 }

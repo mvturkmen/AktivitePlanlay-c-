@@ -80,11 +80,7 @@ public class User implements UserDetails {
 
     private List<Activity>activity;
     
-     @ManyToMany
-    @JoinTable(name="user_activity",
-                joinColumns = @JoinColumn(name="user_id"),
-                inverseJoinColumns = @JoinColumn(name="activity_id"))
-    private List<Activity>attendedActivities=new ArrayList<>();
+     
 
      @Override
  	public Collection<? extends GrantedAuthority> getAuthorities() {

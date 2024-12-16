@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mehmetvasfi.dto.RequestDTO;
 import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.entites.Request;
 import com.mehmetvasfi.entites.User;
@@ -56,7 +57,7 @@ public class RequestServiceImpl implements IRequestService {
     }
 
 
-    @Override
+   /*  @Override
     public Activity getRequestById(Integer id){
 
       
@@ -79,6 +80,44 @@ public class RequestServiceImpl implements IRequestService {
         }
 
         return dbActivity;
+    }*/
+
+    @Override
+    public List<RequestDTO> getRequestById(Integer id) {
+        Activity activity = activityRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Activity not found with id: " + id));
+
+        List<RequestDTO> requestDTOs = activity.getRequests().stream().map(request -> {
+            RequestDTO dto = new RequestDTO();
+            dto.setRequestId(request.getId());
+            dto.setSenderId(request.getSender().getId());
+            
+            dto.setAccepted(request.getIsAccepted());
+            dto.setRequestDate(request.getRequestDate());
+            return dto;
+        }).toList();
+
+        return requestDTOs;
     }
+
+    @Override
+    public List<RequestDTO>getAcceptedRequestById(Integer id){
+        Activity activity=activityRepository.findById(id).orElseThrow(()-> new RuntimeException("Activity not found with id:"+id));
+        List<RequestDTO>requestDTOs=activity.getRequests().stream().filter(request->request.getIsAccepted()).map(request->
+        {
+            RequestDTO dto=new RequestDTO();
+            dto.setRequestId(request.getId());
+            dto.setSenderId(request.getSender().getId());
+            dto.setAccepted(request.getIsAccepted());
+            dto.setRequestDate(request.getRequestDate());
+            return dto;
+
+        }).toList();
+
+        return requestDTOs;
+
+    }
+
+    
 
 }

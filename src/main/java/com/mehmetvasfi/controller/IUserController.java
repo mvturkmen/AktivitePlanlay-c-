@@ -5,7 +5,7 @@ import java.util.List;
 import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.entites.User;
 
-import jakarta.persistence.criteria.CriteriaBuilder.In;
+
 
 public interface IUserController {
 	
