@@ -96,11 +96,5 @@ public class User implements UserDetails {
          return this.password; // password alanının değerini döndürür
      }
 
-    
-
-
-
-
-
 	
 }
