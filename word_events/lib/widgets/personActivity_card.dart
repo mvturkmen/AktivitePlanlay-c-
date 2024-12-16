@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:word_events/screens/add_screen/add_widgets.dart';
+import 'package:word_events/screens/request_screen/request_page.dart';
 import 'package:word_events/screens/updateActivity_screen/updateActivity_screen.dart';
 import 'package:word_events/services/activity_service.dart';
 
@@ -80,6 +81,7 @@ class PersonActivityCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      // Edit Button
                       IconButton(
                         onPressed: (){
                           // update activity
@@ -91,6 +93,21 @@ class PersonActivityCard extends StatelessWidget {
                         icon: const Icon(Icons.edit, color: Colors.blue),
                         tooltip: "Edit",
                       ),
+
+                      // Notification Button
+                      IconButton(
+                        onPressed: (){
+                          // Navigate ActivityRequest page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const RequestPage()),
+                          );
+                        },
+                        icon: const Icon(Icons.notifications, color: Colors.orangeAccent),
+                        tooltip: "Edit",
+                      ),
+
+                      // Delete Button
                       IconButton(
                         onPressed: (){
                           // delete activity

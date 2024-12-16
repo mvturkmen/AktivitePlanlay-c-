@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/models/user.dart';
+import 'package:word_events/screens/updateProfile_screen/updateProfile_page.dart';
 import 'package:word_events/services/activity_service.dart';
 import 'package:word_events/services/user_service.dart';
 import 'package:word_events/widgets/personActivity_card.dart';
@@ -34,7 +35,7 @@ AppBar appBar(){
 }
 
 // Profile body
-Widget buildBody() {
+Widget buildBody(BuildContext context) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +71,7 @@ Widget buildBody() {
         ),
         const SizedBox(height: 20),
         // Personal Information
-        _buildPersonalInformationSection(userP),
+        _buildPersonalInformationSection(context,userP),
         const SizedBox(height: 10),
         const Padding(
           padding: EdgeInsets.only(left: 20.0),
@@ -120,7 +121,7 @@ Widget buildBody() {
 }
 
 // Personal Information Section
-Widget _buildPersonalInformationSection(User user) {
+Widget _buildPersonalInformationSection(BuildContext context,User user) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -136,7 +137,12 @@ Widget _buildPersonalInformationSection(User user) {
             const SizedBox(width: 99,),
             IconButton(
               onPressed: () {
-                // Hesap Edit Fonksiyonu Buraya Eklenecek
+                // update user
+                Navigator.push(
+                  context,
+                  // Emir Baba userını gösterecek
+                  MaterialPageRoute(builder: (context) => UserUpdatePage(user: userP,)),
+                );
               },
               icon: const Icon(Icons.edit, color: Colors.blueAccent),
             ),

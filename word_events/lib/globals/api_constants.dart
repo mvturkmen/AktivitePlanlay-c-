@@ -1,6 +1,6 @@
 
 const String link =
-      "https://7e41-46-104-5-159.ngrok-free.app"
+      "https://37de-78-189-210-104.ngrok-free.app"
   ;
 
   // Activities links
@@ -25,10 +25,13 @@ const String link =
     // Get
     const String usersGetUrl =
         "$link/rest/api/user/list"
+
     ;
     // Post
     const String userPostUrl =
-        "$link/rest/api/user/save"
+        //"$link/rest/api/user/save"
+    // /authenticate
+        "$link/register"
     ;
     // Put
     const String userPutUrl =

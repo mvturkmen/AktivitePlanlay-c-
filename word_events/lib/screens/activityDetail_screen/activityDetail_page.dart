@@ -79,23 +79,6 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
                     );
                   }
               ),
-              AppButton(
-                  label: "Update",
-                  function: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ActivityUpdatePage(activity: widget.activity)),
-                    );
-                  }
-              ),
-              AppButton(
-                  label: "Delete",
-                  function: (){
-                    var id = widget.activity!.id!;
-                    print(id);
-                    removeActivity(context, id);
-                  }
-              ),
             ],
           ),
         ),
@@ -123,23 +106,6 @@ class _ActivityDetailPageState extends State<ActivityDetailPage> {
         ],
       ),
     );
-  }
-
-  Future<void> removeActivity(BuildContext context,int id) async{
-    final resp = await activityService.deleteActivity(id);
-
-    if(resp.statusCode == HttpStatus.ok){
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Activity Removed !"))
-      );
-      Navigator.pop(context);
-    }
-    else{
-      print(resp.statusCode);
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Failed to delete ."))
-      );
-    }
   }
 }
 

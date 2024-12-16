@@ -43,7 +43,14 @@ class UserService {
   // Update (PUT)
   Future<http.Response> updateUser(User user, int id) async {
     try {
-      final response = await http.put(Uri.parse("$userPutUrl$id"));
+      final response = await http.post(Uri.parse("$userPutUrl$id"),
+          headers: <String, String>{
+            'Content-Type' : 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(
+            user.toJson(),
+          )
+      );
       return response;
     } catch (error) {
       throw Exception("Failed when to update ! Error: $error");

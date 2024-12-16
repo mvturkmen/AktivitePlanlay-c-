@@ -13,8 +13,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      //appBar: _appBar(),
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 }

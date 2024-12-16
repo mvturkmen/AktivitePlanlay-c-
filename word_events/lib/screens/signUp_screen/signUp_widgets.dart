@@ -48,7 +48,7 @@ Widget signUp(BuildContext context) {
                   label: "Sign Up",
                   function: (){
                     createUser(context);
-                    _showMyDialog(context);
+                    // KULLANILMAYAN DOĞRULAMA _showMyDialog(context);
                   }
               ), // navigate signup
             ],
