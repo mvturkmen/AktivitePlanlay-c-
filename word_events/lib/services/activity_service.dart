@@ -12,6 +12,7 @@ class ActivityService {
       final response = await http.post(
         Uri.parse(activitiePostUrl),
         headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
           'Content-Type' : 'application/json; charset=UTF-8',
         },
         body: jsonEncode(
@@ -29,7 +30,14 @@ class ActivityService {
   // Read (GET)
   Future<List<Activity>> getActivities() async {
     try {
-      final response = await http.get(Uri.parse(activitiesGetUrl));
+      //final response = await http.get(Uri.parse(activitiesGetUrl));
+      final response = await http.get(
+          Uri.parse(activitiesGetUrl),
+          headers: {
+      'Authorization': 'Bearer $accessToken',
+      'Content-Type': 'application/json',
+      },
+      );
 
       if(response.statusCode == 200) {
         print(response.body);
@@ -48,14 +56,13 @@ class ActivityService {
 
   }
 
-
-  // bu http isteği atılan kısım
   // Update (PUT)
   Future<http.Response> updateActivity(Activity activity, int id) async{
     try{
 
-      final response = await http.post(Uri.parse("$activitiePutUrl$id"),
+      final response = await http.put(Uri.parse("$activitiePutUrl$id"),
           headers: <String, String>{
+            'Authorization': 'Bearer $accessToken',
             'Content-Type' : 'application/json; charset=UTF-8',
           },
           body: jsonEncode(
@@ -77,7 +84,12 @@ class ActivityService {
   // Delete
   Future<http.Response> deleteActivity(int id) async{
     try {
-      final response = http.delete(Uri.parse("$activitieDeleteUrl$id"));
+      final response = http.delete(Uri.parse("$activitieDeleteUrl$id"),
+      headers: <String,String>{
+        'Authorization': 'Bearer $accessToken',
+        'Content-Type' : 'application/json; charset=UTF-8',
+      },
+      );
       return response;
     } catch(error) {
       throw Exception("Failed when delete json data ! Error: $error");

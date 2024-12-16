@@ -1,4 +1,6 @@
 
+import 'package:word_events/models/token.dart';
+
 const String link =
       "https://37de-78-189-210-104.ngrok-free.app"
   ;
@@ -33,6 +35,11 @@ const String link =
     // /authenticate
         "$link/register"
     ;
+
+    const String userAuthUrl =
+        "$link/authenticate"
+    ;
+
     // Put
     const String userPutUrl =
         "$link/rest/api/activity/update/"
@@ -59,3 +66,10 @@ const String link =
     const String requestDeleteUrl =
         "$link/rest/api/activity/delete/"
     ;
+
+
+
+    // Token
+    //Token token  = Token();
+    String passwordToken = "";
+    String accessToken = "";

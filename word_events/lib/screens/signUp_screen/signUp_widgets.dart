@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:word_events/globals/api_constants.dart';
 import 'package:word_events/globals/app_theme.dart';
+import 'package:word_events/models/token.dart';
 import 'package:word_events/models/user.dart';
 import 'package:word_events/services/user_service.dart';
 import 'package:word_events/widgets/button.dart';
@@ -132,6 +135,17 @@ Future<void> createUser(BuildContext context) async{
   final resp = await userService.postUser(user);
 
   if(resp.statusCode == HttpStatus.ok){
+    //print(resp.body[2]);
+    // JSON'u parse et
+    final responseBody = jsonDecode(resp.body);
+
+    // Token nesnesine ata
+    final token = Token.fromJson(responseBody);
+
+    // Global değişkene atama
+    passwordToken = token.password!;
+    print(passwordToken);
+
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("New User Added !"))
     );

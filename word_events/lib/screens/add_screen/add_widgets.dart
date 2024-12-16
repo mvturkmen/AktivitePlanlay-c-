@@ -34,7 +34,7 @@ Widget addUI(BuildContext context) {
           AppButton(
           label: "ADD",
           function: (){
-    
+            // Add activity function
             createActivity(context);
           }
           )

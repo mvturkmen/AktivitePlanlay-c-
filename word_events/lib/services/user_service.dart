@@ -20,6 +20,21 @@ class UserService {
     return response;
   }
 
+  // LogIn function
+  Future<http.Response> authUser(User user) async {
+    final response = await http.post(
+      Uri.parse(userAuthUrl),
+      headers: <String, String>{
+        'Content-Type' : 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        user.toJson(),
+      ),
+    );
+    print(response.body);
+    return response;
+  }
+
   // Read (GET)
   Future<List<User>> getUsers() async {
     try {
