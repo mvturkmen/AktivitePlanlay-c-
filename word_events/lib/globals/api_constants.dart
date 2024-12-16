@@ -1,8 +1,6 @@
 
-import 'package:word_events/models/user.dart';
-
 const String link =
-      "https://1d08-78-189-210-104.ngrok-free.app"
+      "https://7e41-46-104-5-159.ngrok-free.app"
   ;
 
   // Activities links
@@ -38,5 +36,23 @@ const String link =
     ;
     // Delete
     const String userDeleteUrl =
+        "$link/rest/api/activity/delete/"
+    ;
+
+  // Request links
+    // Get
+    const String requestssGetUrl =
+        "$link/rest/api/user/list"
+    ;
+    // Post
+    const String requestPostUrl =
+        "$link/rest/api/user/save"
+    ;
+    // Put
+    const String requestPutUrl =
+        "$link/rest/api/activity/update/"
+    ;
+    // Delete
+    const String requestDeleteUrl =
         "$link/rest/api/activity/delete/"
     ;

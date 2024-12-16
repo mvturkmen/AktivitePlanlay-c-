@@ -13,7 +13,6 @@ class ActivityUpdatePage extends StatefulWidget {
 class _ActivityUpdatePageState extends State<ActivityUpdatePage> {
   @override
   Widget build(BuildContext context) {
-    //return testUI(context);
     return updateUI(context,widget.activity!);
   }
 }

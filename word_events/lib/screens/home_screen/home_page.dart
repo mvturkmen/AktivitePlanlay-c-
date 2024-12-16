@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_theme.dart';
-import 'package:word_events/models/user.dart';
 import 'package:word_events/screens/add_screen/add_page.dart';
 import 'package:word_events/screens/profile_screen/profile_page.dart';
-import 'package:word_events/screens/profile_screen/userPage.dart';
 import 'package:word_events/screens/search_screen/search_page.dart';
 
 class HomePage extends StatefulWidget {

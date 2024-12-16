@@ -49,17 +49,26 @@ class ActivityService {
   }
 
 
+  // bu http isteği atılan kısım
   // Update (PUT)
-  Future<void> updateActivity(Activity activity, int id) async{
+  Future<http.Response> updateActivity(Activity activity, int id) async{
     try{
-      final response = await http.put(Uri.parse("$activitiePutUrl$id"),
+
+      final response = await http.post(Uri.parse("$activitiePutUrl$id"),
           headers: <String, String>{
             'Content-Type' : 'application/json; charset=UTF-8',
           },
           body: jsonEncode(
-              activity.toJson()
+              activity.toJson(),
           )
       );
+      if(response.statusCode == 200){
+        return response;
+      }
+      else {
+        print("Serviste hata oldu : ${response.statusCode}");
+        throw Exception("Fail fail error: ${response.statusCode}");
+      }
     } catch(error) {
       throw Exception("Failed when to update ! Error: $error");
     }

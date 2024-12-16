@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:word_events/models/user.dart';
 import 'package:word_events/services/activity_service.dart';
 import 'package:word_events/services/user_service.dart';
-import 'package:word_events/widgets/activity_card.dart';
+import 'package:word_events/widgets/personActivity_card.dart';
 
 User userP = User(
     firstName: "Emir",
@@ -45,7 +45,7 @@ Widget buildBody() {
           child: CircleAvatar(
             radius: 60,
             backgroundImage: NetworkImage(
-              "https://via.placeholder.com/150", // Default Resim
+              "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400", // Default Resim
             ),
           ),
         ),
@@ -71,7 +71,20 @@ Widget buildBody() {
         const SizedBox(height: 20),
         // Personal Information
         _buildPersonalInformationSection(userP),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
+        const Padding(
+          padding: EdgeInsets.only(left: 20.0),
+          child: Row(
+            children: [
+              Text(
+                "Your Activities",
+                style: TextStyle(
+                    color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
         // Kullanıcı Aktiviteleri
         FutureBuilder(
           future: activityService.getActivities(),
@@ -95,7 +108,7 @@ Widget buildBody() {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   var activityItem = snapshot.data![index];
-                  return ActivityCard(activity: activityItem);
+                  return PersonActivityCard(activity: activityItem);
                 },
               );
             }

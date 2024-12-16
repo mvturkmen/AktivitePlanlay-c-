@@ -59,16 +59,16 @@ class ActivityCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Düzenleyen: '
+                      'Desc.: '
                           ' ${activity.description} ',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      'Kategori: ${activity.category}',
+                      'Category: ${activity.category}',
                       style: const TextStyle(color: Colors.white),
                     ),
                     Text(
-                      'Tarih: ${activity.timeOfActivity}',
+                      'Date: ${activity.timeOfActivity}',
                       style: const TextStyle(color: Colors.white),
                     ),
                   ],

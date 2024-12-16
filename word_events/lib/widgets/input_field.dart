@@ -7,17 +7,19 @@ import 'package:word_events/globals//app_theme.dart';
 
 class InputField extends StatefulWidget {
 
-  TextEditingController tfController = TextEditingController();
-  Icon tfIcon;
-  String tfLabel;
-  VoidCallback tfFunction;
+  TextEditingController? tfController = TextEditingController();
+  Icon? tfIcon;
+  String? tfLabel;
+  String? tfHint;
+  VoidCallback? tfFunction;
 
   InputField({
     super.key,
-    required this.tfController,
-    required this.tfIcon,
-    required this.tfLabel,
-    required this.tfFunction
+    this.tfController,
+    this.tfIcon,
+    this.tfLabel,
+    this.tfHint,
+    this.tfFunction
   });
 
   @override
@@ -44,6 +46,9 @@ class _InputFieldState extends State<InputField> {
             suffixIconColor: appColors.inputFieldColor,
             labelText: widget.tfLabel,
             labelStyle: TextStyle(color: appColors.inputFieldColor),
+            hintText: widget.tfHint,
+            hintStyle: TextStyle(color: appColors.hintColor),
+            helperText: "help text",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(appSize.radius))
             )

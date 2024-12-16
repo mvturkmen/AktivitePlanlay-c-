@@ -41,9 +41,10 @@ class UserService {
   }
 
   // Update (PUT)
-  Future<void> updateUser(User user, int id) async {
+  Future<http.Response> updateUser(User user, int id) async {
     try {
       final response = await http.put(Uri.parse("$userPutUrl$id"));
+      return response;
     } catch (error) {
       throw Exception("Failed when to update ! Error: $error");
     }

@@ -10,6 +10,8 @@ class AppColors {
   Color inputFieldColor = const Color(0xFFE07B39);
 
   Color titleColor = const Color(0xFF1A1A19);
+
+  Color hintColor = const Color(0xFF686D76);
 }
 
 class AppTheme {
