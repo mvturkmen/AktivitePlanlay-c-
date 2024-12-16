@@ -78,7 +78,7 @@ public class UserServicesImpl implements IUserServices{
 			dbUser.setBirthOfDate(updateUser.getBirthOfDate());
 			dbUser.setMailProperties(updateUser.getMailProperties());
 			dbUser.setBio(updateUser.getBio());
-			dbUser.setPasswordString(updateUser.getPasswordString());
+			dbUser.setPassword(updateUser.getPassword());
 
 			return userRepository.save(dbUser);
 		}

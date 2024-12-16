@@ -1,10 +1,12 @@
 package com.mehmetvasfi.entites;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,11 +19,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,40 +30,43 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements UserDetails {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @NotBlank(message = "First name cannot be blank")
-    @Size(max = 50, message = "First name cannot exceed 50 characters")
+	
+	@Column(name = "username")
+	private String username;
+	
+    //@NotBlank(message = "First name cannot be blank")
+    //@Size(max = 50, message = "First name cannot exceed 50 characters")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be blank")
-    @Size(max = 50, message = "Last name cannot exceed 50 characters")
+    //@NotBlank(message = "Last name cannot be blank")
+    //@Size(max = 50, message = "Last name cannot exceed 50 characters")
     @Column(name = "last_name")
     private String lastName;
 
-    @NotNull(message = "Birth date is required")
-    @Past(message = "Birth date must be in the past")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @NotNull(message = "Birth date is required")
+//    @Past(message = "Birth date must be in the past")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birt_of_date")
     private Date birthOfDate;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email must be valid")
+//    @NotBlank(message = "Email is required")
+//    @Email(message = "Email must be valid")
     @Column(name = "mail")
     private String mailProperties;
 
-    @NotBlank(message = "Password cannot be blank")
-    @Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters")
+//    @NotBlank(message = "Password cannot be blank")
+//    @Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters")
     @Column(name = "password")
-    private String passwordString;
+    private String password;
 
-    @Size(max = 250, message = "Bio cannot exceed 250 characters")
+//    @Size(max = 250, message = "Bio cannot exceed 250 characters")
     @Column(name = "bio")
     private String bio;
     
@@ -86,6 +86,17 @@ public class User {
                 inverseJoinColumns = @JoinColumn(name="activity_id"))
     private List<Activity>attendedActivities=new ArrayList<>();
 
+     @Override
+ 	public Collection<? extends GrantedAuthority> getAuthorities() {
+ 		return List.of();
+ 	}
+
+     @Override
+     public String getPassword() {
+         return this.password; // password alanının değerini döndürür
+     }
+
+    
 
 
 

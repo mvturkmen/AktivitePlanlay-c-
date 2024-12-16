@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.mehmetvasfi.entites.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-	Optional<User> findByVerificationToken(String token); 
+	Optional<User> findByVerificationToken(String token);
+
+	Optional<User> findByUsername(String username); 
 }
