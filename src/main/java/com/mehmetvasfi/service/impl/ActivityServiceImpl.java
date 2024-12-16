@@ -1,13 +1,15 @@
 package com.mehmetvasfi.service.impl;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.mehmetvasfi.entites.Activity;
+
 import com.mehmetvasfi.repository.ActivityRepository;
+import com.mehmetvasfi.repository.UserRepository;
 import com.mehmetvasfi.service.IActivityService;
 
 @Service
@@ -15,6 +17,10 @@ public class ActivityServiceImpl implements IActivityService {
 	
 	@Autowired
 	private ActivityRepository activityRepository;
+
+	
+
+	
 
 	@Override
 	public List<Activity> getAllActivity() {
@@ -78,4 +84,10 @@ public class ActivityServiceImpl implements IActivityService {
 	    return null;
 	}
 
+
+	
+
+
+
+	
 }

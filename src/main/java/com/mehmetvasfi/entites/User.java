@@ -80,11 +80,7 @@ public class User {
 
     private List<Activity>activity;
     
-     @ManyToMany
-    @JoinTable(name="user_activity",
-                joinColumns = @JoinColumn(name="user_id"),
-                inverseJoinColumns = @JoinColumn(name="activity_id"))
-    private List<Activity>attendedActivities=new ArrayList<>();
+     
 
 
 

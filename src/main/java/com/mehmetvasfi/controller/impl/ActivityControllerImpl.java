@@ -3,6 +3,7 @@ package com.mehmetvasfi.controller.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mehmetvasfi.controller.IActivityController;
 import com.mehmetvasfi.entites.Activity;
+
 import com.mehmetvasfi.service.IActivityService;
 
 import jakarta.validation.Valid;
@@ -57,6 +59,6 @@ public class ActivityControllerImpl implements IActivityController {
 	}
 	
 	
-
+    
 	
 }

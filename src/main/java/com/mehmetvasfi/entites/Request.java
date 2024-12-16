@@ -38,6 +38,9 @@ public class Request {
     @JoinColumn(name="activity_id")
     private Activity activity;
 
+
+    
+
 	@Column(name = "request_date")
 	private Date requestDate;
 	
@@ -51,5 +54,6 @@ public class Request {
     public void setIsAccepted(Boolean isAccepted) {
         this.isAccepted = isAccepted;
     }
-	
+
+    
 }

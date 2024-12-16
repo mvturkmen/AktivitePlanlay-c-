@@ -1,5 +1,7 @@
 package com.mehmetvasfi.controller.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mehmetvasfi.DTO.RequestDTO;
 import com.mehmetvasfi.controller.IRequestController;
 import com.mehmetvasfi.entites.Activity;
 import com.mehmetvasfi.entites.Request;
@@ -49,8 +52,17 @@ public class RequestConrollerImpl  implements IRequestController{
 
     @Override
     @GetMapping(path="/list/{id}")
-    public Activity getRequestById(@PathVariable(name = "id") Integer id){
-        return requestService.getRequestById(id);
+    public ResponseEntity<List<RequestDTO>> getRequestById(@PathVariable(name = "id") Integer id){
+
+        List<RequestDTO>requestDTOs=requestService.getRequestById(id);
+        return ResponseEntity.ok(requestDTOs);
+    }
+
+    @Override
+    @GetMapping(path = "/accepted/list/{id}")
+    public ResponseEntity<List<RequestDTO>> getAcceptedRequestById(@PathVariable(name = "id") Integer id) {
+        List<RequestDTO> requestDTOs = requestService.getAcceptedRequestById(id);
+        return ResponseEntity.ok(requestDTOs);
     }
     
 
