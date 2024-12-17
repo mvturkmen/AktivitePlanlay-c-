@@ -14,25 +14,25 @@ class RequestModel {
   RequestModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     sender =
-      json['sender'] != null ? new User.fromJson(json['sender']) : null;
+      json['sender'] != null ? User.fromJson(json['sender']) : null;
     activity = json['activity'] != null
-        ? new Activity.fromJson(json['activity'])
+        ? Activity.fromJson(json['activity'])
         : null;
     requestDate = json['request_date'];
     isAccepted = json['isAccepted'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.sender != null) {
-      data['sender'] = this.sender!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (sender != null) {
+      data['sender'] = sender!.toJson();
     }
-    if (this.activity != null) {
-      data['activity'] = this.activity!.toJson();
+    if (activity != null) {
+      data['activity'] = activity!.toJson();
     }
-    data['request_date'] = this.requestDate;
-    data['isAccepted'] = this.isAccepted;
+    data['request_date'] = requestDate;
+    data['isAccepted'] = isAccepted;
     return data;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_theme.dart';
-import 'package:word_events/screens/add_screen/add_page.dart';
 import 'package:word_events/screens/profile_screen/profile_page.dart';
 import 'package:word_events/screens/search_screen/search_page.dart';
 
@@ -43,7 +42,7 @@ Widget buildUI() {
 }
 
 // bottom nav bar widget
-Widget bottomNavBar(Function(int) _onTapped) {
+Widget bottomNavBar(Function(int) onTapped) {
   return BottomNavigationBar(
     items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
@@ -61,6 +60,6 @@ Widget bottomNavBar(Function(int) _onTapped) {
     ],
     currentIndex: _selectedIndex,
     selectedItemColor: _appColors.primaryColor,
-    onTap: _onTapped,
+    onTap: onTapped,
   );
 }

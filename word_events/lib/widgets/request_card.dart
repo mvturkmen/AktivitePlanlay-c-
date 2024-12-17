@@ -27,20 +27,26 @@ class RequestCard extends StatelessWidget {
             ),
             Row(
               children: [
+                // Accept Button
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // accept function
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                   ),
-                  child: const Text('Kabul Et'),
+                  child: const Text('Accept'),
                 ),
                 const SizedBox(width: 8),
+                // Reject Button
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // reject function
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),
-                  child: const Text('Reddet'),
+                  child: const Text('Reject'),
                 ),
               ],
             ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_size.dart';
 import 'package:word_events/globals//app_theme.dart';

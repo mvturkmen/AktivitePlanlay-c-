@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:word_events/services/activity_service.dart';
@@ -44,6 +43,8 @@ Widget addUI(BuildContext context) {
   );
 }
 
+
+// Repository
 Future<void> createActivity(BuildContext context) async{
   Activity activity = Activity(
     title: tfTitleController.text,

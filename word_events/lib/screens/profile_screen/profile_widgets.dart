@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:word_events/models/activity.dart';
 import 'package:word_events/models/user.dart';
 import 'package:word_events/screens/updateProfile_screen/updateProfile_page.dart';
 import 'package:word_events/services/activity_service.dart';
 import 'package:word_events/services/user_service.dart';
 import 'package:word_events/widgets/personActivity_card.dart';
 
+// Sample test user object
 User userP = User(
     firstName: "Emir",
     lastName: "Saglam",
     birthOfDate: DateTime.now(),
     mailProperties: "emirsaglam.841@gmail.com",
-    passwordString: "emirbaba",
+    passwordString: "emir123",
     bio: "Merhaba Ben Emir . Gezmeyi cok severim"
 );
 
@@ -26,7 +28,7 @@ AppBar appBar(){
     actions: [
       IconButton(
         onPressed: () {
-          // Hesap Silme Fonksiyonu Buraya Eklenecek
+          // Account delete function
         },
         icon: const Icon(Icons.delete_forever, color: Colors.red),
       )
@@ -87,8 +89,8 @@ Widget buildBody(BuildContext context) {
         ),
         const SizedBox(height: 10),
         // Kullanıcı Aktiviteleri
-        FutureBuilder(
-          future: activityService.getActivities(),
+        StreamBuilder(
+          stream: Stream<List<Activity>>.fromFuture(activityService.getActivities()),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();

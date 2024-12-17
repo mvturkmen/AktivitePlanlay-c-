@@ -19,7 +19,6 @@ class ActivityService {
           activity.toJson(),
         ),
       );
-      print(response.body);
       return response;
     } catch (error){
       throw Exception("Failed when create a json data ! Error: $error");
@@ -34,13 +33,12 @@ class ActivityService {
       final response = await http.get(
           Uri.parse(activitiesGetUrl),
           headers: {
-      'Authorization': 'Bearer $accessToken',
-      'Content-Type': 'application/json',
-      },
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          },
       );
 
       if(response.statusCode == 200) {
-        print(response.body);
         List<dynamic> responseList = json.decode(response.body);
 
         List<Activity> activities = responseList.map((jsonItem) => Activity.fromJson(jsonItem)).toList();
@@ -50,11 +48,34 @@ class ActivityService {
         throw Exception("Failed to connect");
       }
     } catch (error) {
-      print('Error: $error');
       throw Exception('Failed to load activities ! Error: $error');
     }
-
   }
+
+
+  Future<Activity> getActivity(int id) async {
+    try {
+      // URL'yi activityId'ye göre düzenleyin
+      final response = await http.get(
+        Uri.parse('$activitiesGetUrl$id'),
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Gelen JSON yanıtını parse ederek Activity nesnesine dönüştür
+        Map<String, dynamic> jsonItem = json.decode(response.body);
+        return Activity.fromJson(jsonItem);
+      } else {
+        throw Exception("Failed to connect");
+      }
+    } catch (error) {
+      throw Exception('Failed to load activity! Error: $error');
+    }
+  }
+
 
   // Update (PUT)
   Future<http.Response> updateActivity(Activity activity, int id) async{
@@ -73,7 +94,6 @@ class ActivityService {
         return response;
       }
       else {
-        print("Serviste hata oldu : ${response.statusCode}");
         throw Exception("Fail fail error: ${response.statusCode}");
       }
     } catch(error) {

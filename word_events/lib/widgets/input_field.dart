@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:word_events/globals/app_size.dart';
 import 'package:word_events/globals//app_theme.dart';
@@ -48,7 +47,6 @@ class _InputFieldState extends State<InputField> {
             labelStyle: TextStyle(color: appColors.inputFieldColor),
             hintText: widget.tfHint,
             hintStyle: TextStyle(color: appColors.hintColor),
-            helperText: "help text",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(appSize.radius))
             )

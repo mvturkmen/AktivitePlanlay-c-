@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:word_events/controllers/activity_controller.dart';
-import 'package:word_events/models/activity.dart';
-import 'package:word_events/models/user.dart';
 import 'package:word_events/widgets/button.dart';
 import 'package:word_events/widgets/search_field.dart';
 import 'package:get/get.dart';
@@ -32,19 +30,9 @@ Widget searchUI(BuildContext context) {
             label: "Search",
             function: (){
               // filtering list function
-
-              /*
-              Activity activity = Activity(
-                title: "Halısaha Maçı",
-                category: "Futbol"
-              );
-              activityController.addActivity(activity);
-              */
-
               Navigator.pushNamed(context, '/activities');
             }
         ),
-
       ],
     ),
   );

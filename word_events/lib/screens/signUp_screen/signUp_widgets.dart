@@ -62,6 +62,7 @@ Widget signUp(BuildContext context) {
   );
 }
 
+// Unused functions
 void _showMyDialog(BuildContext context) async {
   return showDialog(
     context: context,
@@ -97,8 +98,6 @@ void _showMyDialog(BuildContext context) async {
     },
   );
 }
-
-
 void _codeVerification(BuildContext context) async {
   String correctCode = "drogba"; // API process
 
@@ -122,6 +121,7 @@ void _codeVerification(BuildContext context) async {
 }
 
 
+// Repository
 Future<void> createUser(BuildContext context) async{
   User user = User(
     firstName: tfFirstNameController.text,
@@ -135,7 +135,6 @@ Future<void> createUser(BuildContext context) async{
   final resp = await userService.postUser(user);
 
   if(resp.statusCode == HttpStatus.ok){
-    //print(resp.body[2]);
     // JSON'u parse et
     final responseBody = jsonDecode(resp.body);
 
@@ -144,7 +143,6 @@ Future<void> createUser(BuildContext context) async{
 
     // Global değişkene atama
     passwordToken = token.password!;
-    print(passwordToken);
 
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("New User Added !"))

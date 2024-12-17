@@ -21,7 +21,7 @@ class UserService {
   }
 
   // LogIn function
-  Future<http.Response> authUser(User user) async {
+  Future<http.Response> authUserE(User user) async {
     final response = await http.post(
       Uri.parse(userAuthUrl),
       headers: <String, String>{

@@ -13,7 +13,3 @@ class AppColors {
 
   Color hintColor = const Color(0xFF686D76);
 }
-
-class AppTheme {
-  
-}

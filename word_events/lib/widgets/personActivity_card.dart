@@ -1,12 +1,9 @@
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:word_events/models/activity.dart';
 import 'package:word_events/screens/add_screen/add_widgets.dart';
 import 'package:word_events/screens/request_screen/request_page.dart';
 import 'package:word_events/screens/updateActivity_screen/updateActivity_screen.dart';
-import 'package:word_events/services/activity_service.dart';
 
 class PersonActivityCard extends StatelessWidget {
   final Activity activity;

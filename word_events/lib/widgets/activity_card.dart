@@ -12,7 +12,6 @@ class ActivityCard extends StatelessWidget {
     return GestureDetector(
       onDoubleTap: () {
         // Navigator ile detay sayfasına yönlendirme
-        //Navigator.pushNamed(context, '/activityDetail');
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ActivityDetailPage(activity: activity,)),

@@ -1,4 +1,3 @@
-import 'package:word_events/models/activity.dart';
 
 class User {
   int? id;

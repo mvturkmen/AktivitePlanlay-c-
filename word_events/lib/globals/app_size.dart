@@ -3,5 +3,4 @@ class AppSize {
   double maxPadding = 50;
   double midPadding = 20;
   double minPadding = 10;
-
 }

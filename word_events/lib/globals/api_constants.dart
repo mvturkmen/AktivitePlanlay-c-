@@ -1,8 +1,8 @@
 
-import 'package:word_events/models/token.dart';
+import '../models/user.dart';
 
 const String link =
-      "https://37de-78-189-210-104.ngrok-free.app"
+      "https://166e-151-135-32-167.ngrok-free.app"
   ;
 
   // Activities links
@@ -69,7 +69,9 @@ const String link =
 
 
 
-    // Token
-    //Token token  = Token();
+    // Tokens
     String passwordToken = "";
     String accessToken = "";
+
+    // Active User
+    User activeUser = User();

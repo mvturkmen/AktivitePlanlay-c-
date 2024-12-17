@@ -8,7 +8,6 @@ import 'package:word_events/screens/profile_screen/profile_page.dart';
 import 'package:word_events/screens/search_screen/search_page.dart';
 import 'package:word_events/screens/signUp_screen/signUp_page.dart';
 import 'package:word_events/screens/updateActivity_screen/updateActivity_screen.dart';
-import 'package:word_events/services/activity_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/add': (context) => const SearchPage(),
         '/profile': (context) => const ProfilePage(),
         '/activities': (context) => const ActivitiesPage(),
-        '/activityDetail': (context) => const ActivityDetailPage(),
+        '/activityDetail': (context) => ActivityDetailPage(),
         '/updateActivity' : (context) => const ActivityUpdatePage(),
       },
     );
